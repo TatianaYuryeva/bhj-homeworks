@@ -1,9 +1,10 @@
-const slides = document.querySelectorAll('.slider__item')
+const slides = Array.from(document.querySelectorAll('.slider__item'))
 const arrowPrev = document.querySelector('.slider__arrow_prev')
 const arrowNext = document.querySelector('.slider__arrow_next')
-let activeSlide = 0
 
 function slide(next) {
+  const isActiveSlide = (el) => el.classList.contains('slider__item_active')
+  let activeSlide = slides.findIndex(isActiveSlide)
   slides[activeSlide].classList.remove('slider__item_active')
   if(next) {
     if (activeSlide == slides.length - 1) {
@@ -20,9 +21,9 @@ function slide(next) {
 }
 
 arrowPrev.onclick  = () => {
-  slide(next = false)
+  slide(false)
 }
 
 arrowNext.onclick  = () => {
-  slide(next = true)
+  slide(true)
 }
