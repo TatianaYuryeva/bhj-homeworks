@@ -7,14 +7,10 @@ function slide(next) {
   let activeSlide = slides.findIndex(isActiveSlide)
   slides[activeSlide].classList.remove('slider__item_active')
   if(next) {
-    if (activeSlide == slides.length - 1) {
-      activeSlide = -1
-    }
+    activeSlide = activeSlide == slides.length - 1 ? -1 : activeSlide
     activeSlide++
   } else if(!next) {
-      if (activeSlide == 0) {
-        activeSlide = slides.length
-      }
+      activeSlide = activeSlide == 0 ? slides.length : activeSlide
       activeSlide--
     }
   slides[activeSlide].classList.add('slider__item_active')

@@ -17,6 +17,18 @@ class Game {
   }
 
   registerEvents() {
+    
+    console.log(this.currentSymbol.textContent);
+    let symbol = this.currentSymbol.textContent;
+    function onKey(event) {
+      console.log(event.key == symbol);
+      if (event.key == symbol) {
+        
+      }
+      return event.key;
+    }
+    document.addEventListener('keyup', onKey);
+    
     /*
       TODO:
       Написать обработчик события, который откликается
