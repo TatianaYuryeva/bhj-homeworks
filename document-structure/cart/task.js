@@ -17,7 +17,7 @@ function updQuantity(event) {
 
 function addProducts(event) {
   let target = event.currentTarget
-  let cartProductsList = document.querySelectorAll('.cart__product')
+  let cartProductsList = Array.from(document.querySelectorAll('.cart__product'))
   let quantity = Number(target.previousElementSibling.children[1].textContent)
   let id = target.closest('.product').getAttribute('data-id')
   let imgSrc = target.closest('.product').children[1].getAttribute('src')
@@ -28,14 +28,11 @@ function addProducts(event) {
       <img class="cart__product-image" src="${imgSrc}">
       <div class="cart__product-count">${quantity}</div>
       `
-  cartProducts.append(cartProduct)
-  
-  for (i = 0; i < cartProductsList.length; i++) {
-    if (cartProductsList[i].getAttribute('data-id') == id) {
-      cartProductsList[i].children[1].textContent = Number(cartProductsList[i].textContent) + quantity
-      cartProducts.lastChild.remove()
-      break
-    }
+  let productInCart = cartProductsList.find(element => element.getAttribute('data-id') == id)
+  if (productInCart) {
+    productInCart.children[1].textContent = Number(productInCart.children[1].textContent) + quantity
+  } else {
+    cartProducts.append(cartProduct)  
   }
 }
 
