@@ -17,15 +17,14 @@ class Game {
   }
 
   registerEvents() {
-    
-    console.log(this.currentSymbol.textContent);
-    let symbol = this.currentSymbol.textContent;
+    let game = this;
+
     function onKey(event) {
-      console.log(event.key == symbol);
-      if (event.key == symbol) {
-        
+      if (event.key.toLowerCase() == game.currentSymbol.textContent.toLowerCase()) {
+        game.success();
+      } else {
+        game.fail();
       }
-      return event.key;
     }
     document.addEventListener('keyup', onKey);
     
